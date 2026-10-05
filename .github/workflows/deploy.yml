@@ -25,11 +25,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Pygbag & Build
+      - name: Install Pygbag
         run: |
           python -m pip install --upgrade pip
           pip install pygbag
-          pygbag --build main.py
+
+      - name: Build WebAssembly (Non-Interactive)
+        run: |
+          python -m pygbag --build --template no_dock main.py
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
@@ -45,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4 
