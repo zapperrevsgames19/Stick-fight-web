@@ -72,6 +72,7 @@ class MobileStickman:
       )
 
 
+# CRITICAL: Pygbag requires 'async def main()' to avoid Exit Code 89
 async def main():
   player = MobileStickman(150, BLUE)
 
@@ -126,6 +127,8 @@ async def main():
     screen.blit(font.render("HIT", True, WHITE), (790, 405))
 
     pygame.display.flip()
+
+    # CRITICAL: Keeps browser responsive (prevents Exit Code 89 freeze)
     await asyncio.sleep(0)
 
   pygame.quit()
